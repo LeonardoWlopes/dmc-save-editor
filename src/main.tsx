@@ -1,15 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Toaster } from '~/components/ui/sonner';
-import { QueryProvider } from './providers/query-provider';
+import { AppContextProvider } from '~/contexts/app-context';
 import { Router } from './router';
 import '~/i18n/config';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
 	<StrictMode>
-		<QueryProvider>
+		<AppContextProvider>
 			<Router />
+
 			<Toaster theme="dark" position="bottom-right" richColors />
-		</QueryProvider>
+		</AppContextProvider>
 	</StrictMode>,
 );

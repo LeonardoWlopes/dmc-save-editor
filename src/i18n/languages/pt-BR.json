@@ -11,12 +11,16 @@
 			"subtitle": "ou clique para procurar"
 		},
 		"errors": {
-			"invalid_file": "Arquivo inválido. Selecione um arquivo .sav"
+			"invalid_file": "Arquivo inválido. Selecione um arquivo .sav",
+			"unknown_game": "Save não reconhecido. Certifique-se de que é um arquivo da DMC HD Collection (Steam)."
 		},
 		"games": {
-			"dmc1": "DMC 1",
-			"dmc2_soon": "DMC 2 — em breve",
-			"dmc3_soon": "DMC 3 — em breve"
+			"dmc1": "Devil May Cry",
+			"dmc1_badge": "DMC 1",
+			"dmc2": "Devil May Cry 2",
+			"dmc2_badge": "DMC 2 — em breve",
+			"dmc3": "Devil May Cry 3",
+			"dmc3_badge": "DMC 3 — em breve"
 		},
 		"hero": {
 			"description": "Edite seus saves da Devil May Cry HD Collection.\nModifique missões, dificuldade, orbs e mais.",

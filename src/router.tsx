@@ -4,19 +4,15 @@ import { Layout } from './components/layout';
 import { LoadingScreen } from './screens/loading';
 
 const HomeScreen = lazy(() => import('./screens/home'));
+const Dmc1Screen = lazy(() => import('./screens/dmc1'));
 
 const router = createBrowserRouter([
 	{
 		element: <Layout />,
 		children: [
-			{
-				path: '/',
-				element: <HomeScreen />,
-			},
-			{
-				path: '*',
-				element: <Navigate to="/" />,
-			},
+			{ path: '/', element: <HomeScreen /> },
+			{ path: '/dmc1', element: <Dmc1Screen /> },
+			{ path: '*', element: <Navigate to="/" /> },
 		],
 	},
 ]);

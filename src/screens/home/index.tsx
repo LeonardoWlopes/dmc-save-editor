@@ -10,12 +10,14 @@ export default function HomeScreen() {
 	const {
 		isDragging,
 		loadedFile,
+		game,
 		inputRef,
 		handleDropFile,
 		handleDragOver,
 		handleDragLeave,
 		handleInputChange,
 		handleDropFileZoneKeyDown,
+		handleOpenEditor,
 	} = useHomeContainer();
 
 	const { t } = useTranslation('home');
@@ -85,7 +87,7 @@ export default function HomeScreen() {
 
 						<div className="text-center">
 							<p className="font-display text-sm font-bold tracking-widest uppercase text-dmc-gold dmc-gold-glow">
-								{t('dropzone.loaded_title')}
+								{game && t(`games.${game}`)}
 							</p>
 
 							<p className="text-foreground text-sm mt-1 font-mono">
@@ -97,11 +99,10 @@ export default function HomeScreen() {
 							</p>
 						</div>
 
-						{/* stopPropagation evita que o label abra o file dialog ao clicar */}
 						<Button
 							size="sm"
 							className="font-display tracking-widest uppercase text-xs"
-							onClick={(e) => e.stopPropagation()}
+							onClick={handleOpenEditor}
 						>
 							{t('dropzone.open_editor')}
 						</Button>
@@ -147,21 +148,21 @@ export default function HomeScreen() {
 					variant="outline"
 					className="border-primary/60 text-primary font-display tracking-wider uppercase text-[10px] py-1 px-3"
 				>
-					{t('games.dmc1')}
+					{t('games.dmc1_badge')}
 				</Badge>
 
 				<Badge
 					variant="outline"
 					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
 				>
-					{t('games.dmc2_soon')}
+					{t('games.dmc2_badge')}
 				</Badge>
 
 				<Badge
 					variant="outline"
 					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
 				>
-					{t('games.dmc3_soon')}
+					{t('games.dmc3_badge')}
 				</Badge>
 			</div>
 		</main>

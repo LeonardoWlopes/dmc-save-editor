@@ -9,6 +9,7 @@
 	},
 	"dmc1_screen": {
 		"badge": "DMC 1",
+		"download_button": "Baixar Save",
 		"empty_slot_message": "Slot vazio — selecione um slot com dados",
 		"fields": {
 			"blue_orbs": "Blue Orbs",

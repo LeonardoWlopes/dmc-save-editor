@@ -1,3 +1,4 @@
+import { Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router';
 import blueOrb14 from '~/assets/images/dmc1-blue-orb-1-4.png';
@@ -14,6 +15,7 @@ import { Section } from '~/components/dmc1-editor/section';
 import { SlotSelector } from '~/components/dmc1-editor/slot-selector';
 import { StaticField } from '~/components/dmc1-editor/static-field';
 import { Badge } from '~/components/ui/badge';
+import { Button } from '~/components/ui/button';
 import { useBeforeUnload } from '~/hooks/use-before-unload';
 import { useSoundEffects } from '~/hooks/use-sound-effects';
 import { formatPlaytime } from '~/utils/data';
@@ -33,6 +35,7 @@ export default function Dmc1Screen() {
 		control,
 		blueOrbCount,
 		handleSelectSlot,
+		onSubmit,
 	} = useDmc1ScreenContainer();
 
 	const { playCursor } = useSoundEffects();
@@ -71,16 +74,13 @@ export default function Dmc1Screen() {
 			/>
 
 			{selectedSlot && !selectedSlot.isEmpty && (
-				<form
-					className="flex flex-col gap-4"
-					onSubmit={(e) => e.preventDefault()}
-				>
+				<form className="flex flex-col gap-4" onSubmit={onSubmit}>
 					<Section title={t('sections.progress')}>
 						<NumberField
 							control={control}
 							name="currentMission"
 							label={t('fields.current_mission')}
-							min={1}
+							min={0}
 							max={23}
 							onFocus={playCursor}
 						/>
@@ -168,6 +168,17 @@ export default function Dmc1Screen() {
 							onFocus={playCursor}
 						/>
 					</Section>
+
+					<div className="flex justify-end pt-2">
+						<Button
+							type="submit"
+							className="gap-2 font-display tracking-widest uppercase text-xs px-6"
+							onMouseEnter={playCursor}
+						>
+							<Download className="w-4 h-4" />
+							{t('download_button')}
+						</Button>
+					</div>
 				</form>
 			)}
 

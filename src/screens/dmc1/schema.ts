@@ -5,8 +5,8 @@ export const dmc1ScreenSchema = z.object({
 	currentMission: z
 		.number()
 		.int('Deve ser um inteiro')
-		.min(1, 'Mínimo: missão 1')
-		.max(23, 'Máximo: missão 23'),
+		.min(0, 'Mínimo: 0')
+		.max(23, 'Máximo: 23'),
 	difficulty: z.enum(EDmc1Difficulty, {
 		message: 'Dificuldade inválida',
 	}),

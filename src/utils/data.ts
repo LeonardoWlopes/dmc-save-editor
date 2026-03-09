@@ -38,3 +38,15 @@ export function formatPlaytime(frames: number): string {
 	const pad = (n: number) => n.toString().padStart(2, '0');
 	return `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
 }
+
+export function downloadBuffer(buffer: ArrayBuffer, filename: string): void {
+	const blob = new Blob([buffer], { type: 'application/octet-stream' });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = filename;
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+	URL.revokeObjectURL(url);
+}

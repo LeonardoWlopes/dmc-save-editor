@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { useAppContext } from '~/contexts/app-context';
+import { useSoundEffects } from '~/hooks/use-sound-effects';
 import { detectGame } from '~/parsers/detect-game';
 
 export function useHomeContainer() {
@@ -20,6 +21,8 @@ export function useHomeContainer() {
 
 	const { game, setGameFile } = useAppContext();
 
+	const { playAlert, playSelection, playCursor } = useSoundEffects();
+
 	const navigate = useNavigate();
 
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -27,13 +30,14 @@ export function useHomeContainer() {
 	async function handleLoadFile(file: File) {
 		if (!file.name.endsWith('.sav')) {
 			toast.error(t('errors.invalid_file'));
+			playAlert();
 			return;
 		}
 
 		const buffer = await file.arrayBuffer();
-		const game = detectGame(buffer);
+		const detectedGame = detectGame(buffer);
 
-		if (!game) {
+		if (!detectedGame) {
 			toast.error(t('errors.unknown_game'));
 			return;
 		}
@@ -41,12 +45,9 @@ export function useHomeContainer() {
 		setGameFile({
 			buffer,
 			file,
-			game,
+			game: detectedGame,
 		});
-
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		navigate(`/${game}`);
+		playAlert();
 	}
 
 	function handleDropFile(e: DragEvent<HTMLLabelElement>) {
@@ -65,6 +66,14 @@ export function useHomeContainer() {
 		if (e.key === 'Enter' || e.key === ' ') inputRef.current?.click();
 	}
 
+	function handleOpenEditor(e: MouseEvent<HTMLButtonElement>) {
+		e.stopPropagation();
+		if (game?.game) {
+			playSelection();
+			navigate(`/${game.game}`);
+		}
+	}
+
 	const handleDragOver = useCallback((e: DragEvent<HTMLLabelElement>) => {
 		e.preventDefault();
 		setIsDragging(true);
@@ -74,10 +83,9 @@ export function useHomeContainer() {
 		setIsDragging(false);
 	}, []);
 
-	function handleOpenEditor(e: MouseEvent<HTMLButtonElement>) {
-		e.stopPropagation();
-		if (game?.game) navigate(`/${game.game}`);
-	}
+	const handleCursorSound = useCallback(() => {
+		if (!game?.file) playCursor();
+	}, [!game?.file]);
 
 	return {
 		isDragging,
@@ -87,6 +95,7 @@ export function useHomeContainer() {
 		handleDropFile,
 		handleDragOver,
 		handleDragLeave,
+		handleCursorSound,
 		handleInputChange,
 		handleDropFileZoneKeyDown,
 		handleOpenEditor,

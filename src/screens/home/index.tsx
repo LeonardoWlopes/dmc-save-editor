@@ -2,9 +2,12 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
+import { EGameVersion } from '~/enums/game';
 import { cn } from '~/lib/utils';
 import { formatBytes } from '~/utils/data';
 import { useHomeContainer } from './container';
+
+const GAME_VERSIONS = Array.from(Object.values(EGameVersion));
 
 export default function HomeScreen() {
 	const {
@@ -15,6 +18,7 @@ export default function HomeScreen() {
 		handleDropFile,
 		handleDragOver,
 		handleDragLeave,
+		handleCursorSound,
 		handleInputChange,
 		handleDropFileZoneKeyDown,
 		handleOpenEditor,
@@ -64,6 +68,7 @@ export default function HomeScreen() {
 				onDrop={handleDropFile}
 				onDragOver={handleDragOver}
 				onDragLeave={handleDragLeave}
+				onMouseEnter={handleCursorSound}
 				onKeyDown={handleDropFileZoneKeyDown}
 			>
 				{/* Corner decorations */}
@@ -103,6 +108,7 @@ export default function HomeScreen() {
 							size="sm"
 							className="font-display tracking-widest uppercase text-xs"
 							onClick={handleOpenEditor}
+							onMouseEnter={handleCursorSound}
 						>
 							{t('dropzone.open_editor')}
 						</Button>
@@ -130,7 +136,6 @@ export default function HomeScreen() {
 							</p>
 						</div>
 
-						{/* span estilizado — o label pai cuida do clique nativamente */}
 						<span className="inline-flex items-center justify-center font-display tracking-widest uppercase text-xs border border-primary/40 text-primary hover:bg-primary/10 transition-colors rounded-sm px-3 py-1.5">
 							{t('dropzone.browse_button')}
 						</span>
@@ -144,26 +149,20 @@ export default function HomeScreen() {
 
 			{/* Game support badges */}
 			<div className="flex items-center gap-3">
-				<Badge
-					variant="outline"
-					className="border-primary/60 text-primary font-display tracking-wider uppercase text-[10px] py-1 px-3"
-				>
-					{t('games.dmc1_badge')}
-				</Badge>
-
-				<Badge
-					variant="outline"
-					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
-				>
-					{t('games.dmc2_badge')}
-				</Badge>
-
-				<Badge
-					variant="outline"
-					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
-				>
-					{t('games.dmc3_badge')}
-				</Badge>
+				{GAME_VERSIONS.map((version) => (
+					<Badge
+						key={version}
+						variant="outline"
+						className={cn(
+							'font-display tracking-wider uppercase text-[10px] py-1 px-3 transition-colors cursor-default select-none',
+							game === version
+								? 'border-primary/60 text-primary'
+								: 'border-muted-foreground/20 text-muted-foreground/40',
+						)}
+					>
+						{t(`games.${version}_badge`)}
+					</Badge>
+				))}
 			</div>
 		</main>
 	);

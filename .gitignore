@@ -32,3 +32,4 @@ coverage
 /allure-report
 /allure-results
 *.sav
+temp

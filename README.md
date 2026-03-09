@@ -12,6 +12,8 @@
 
 O **DMC Save Editor** permite editar arquivos de save da Devil May Cry HD Collection no Steam (`.sav`). O projeto nasceu como ferramenta pessoal e estudo de manipulação de dados binários — entendendo endianness, layout de memória e estrutura de arquivos de jogos.
 
+**Assets de som e textura do jogo:** [Devil May Cry HD Collection – Extract All Assets](https://www.nexusmods.com/devilmaycryhdcollection/mods/373) (Nexus Mods) — contém todos os sons e texturas extraídos do jogo.
+
 ## Jogos suportados
 
 | Jogo | Status | Checksum |

@@ -1,4 +1,4 @@
-import type { EGameVersion } from '~/enums/game';
+import type { EGameVersion } from '~/enums/version';
 
 export interface IGameFile {
 	file: File;

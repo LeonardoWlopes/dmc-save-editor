@@ -1,4 +1,38 @@
 {
+	"dmc1_difficulty_field": {
+		"1": "Normal",
+		"3": "Hard",
+		"5": "Dante Must Die",
+		"7": "Heaven or Hell",
+		"9": "Hell and Hell",
+		"label": "Dificuldade"
+	},
+	"dmc1_screen": {
+		"badge": "DMC 1",
+		"empty_slot_message": "Slot vazio — selecione um slot com dados",
+		"fields": {
+			"blue_orbs": "Blue Orbs",
+			"completions": "Completações",
+			"current_mission": "Missão Atual",
+			"devil_trigger": "Devil Trigger",
+			"playtime": "Tempo de Jogo",
+			"red_orbs": "Red Orbs",
+			"total_saves": "Total de Saves",
+			"vitality": "Vitalidade",
+			"yellow_orbs": "Yellow Orbs"
+		},
+		"sections": {
+			"character": "Personagem",
+			"orbs": "Orbs",
+			"progress": "Progresso"
+		},
+		"title": "Devil May Cry"
+	},
+	"dmc1_slot_selector": {
+		"empty": "Vazio",
+		"mission_short": "M{{mission}}",
+		"slot_label": "Slot"
+	},
 	"home": {
 		"dropzone": {
 			"browse_button": "Selecionar arquivo",

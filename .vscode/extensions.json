@@ -18,6 +18,7 @@
 		"github.vscode-github-actions",
 		"cipchk.cssrem",
 		"bradlc.vscode-tailwindcss",
-		"vitest.explorer"
+		"vitest.explorer",
+		"biomejs.biome"
 	]
 }

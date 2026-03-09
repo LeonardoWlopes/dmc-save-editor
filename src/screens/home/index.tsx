@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '~/components/ui/badge';
 import { Button } from '~/components/ui/button';
-import { EGameVersion } from '~/enums/game';
+import { EGameVersion } from '~/enums/version';
 import { cn } from '~/lib/utils';
 import { formatBytes } from '~/utils/data';
 import { useHomeContainer } from './container';

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import { useAppContext } from '~/contexts/app-context';
 import { useSoundEffects } from '~/hooks/use-sound-effects';
-import { detectGame } from '~/parsers/detect-game';
+import { detectGame } from '~/utils/detect-game';
 
 export function useHomeContainer() {
 	const [isDragging, setIsDragging] = useState(false);

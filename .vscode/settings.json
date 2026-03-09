@@ -1,0 +1,25 @@
+{
+	"cSpell.words": ["lefthook"],
+	"editor.formatOnSave": true,
+	"editor.detectIndentation": false,
+	"editor.guides.bracketPairs": "active",
+	"editor.linkedEditing": true,
+	"editor.renderControlCharacters": true,
+	"editor.renderWhitespace": "all",
+	"editor.tabSize": 4,
+	"explorer.fileNesting.enabled": true,
+	"explorer.fileNesting.patterns": {
+		".editorconfig": "biome.*, lefthook*, commitlint*, .lintstagedrc",
+		".env": ".env*",
+		".gitignore": ".git*",
+		"package.json": "tsconfig*, bun.lock*, .nvmrc, .releaserc, tailwind*, postcss*, next.config.ts, vite*"
+	},
+	"i18n-ally.keystyle": "flat",
+	"i18n-ally.localesPaths": ["**/languages/**"],
+	"i18n-ally.sourceLanguage": "pt-br",
+	"tailwindCSS.experimental.classRegex": [
+		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+	],
+	"coverage-gutters.coverageFileNames": ["clover.xml"]
+}

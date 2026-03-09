@@ -1,0 +1,17 @@
+{
+	"errors": {
+		"environment_variables": "Erros encontrados nas variáveis de ambiente"
+	},
+	"home": {
+		"no_organization": "Nenhuma organização encontrada",
+		"organization": {
+			"blog": "Blog",
+			"location": "Localização",
+			"members": "Membros",
+			"not_informed": "Não informada",
+			"repositories": "Repositórios",
+			"view_on_github": "Ver no GitHub"
+		},
+		"title": "BuildBox Vite Template"
+	}
+}

@@ -1,0 +1,28 @@
+pre-commit:
+  parallel: true
+  commands:
+    verify-types:
+      run: bun run tsc
+    lint:
+      glob: "*.{js,jsx,ts,tsx}"
+      run: bunx biome check --write {staged_files}
+      stage_fixed: true
+    test:
+      run: bun run test:cov
+pre-push:
+  parallel: true
+  commands:
+    verify-types:
+      run: bun run tsc
+    lint:
+      glob: "*.{js,jsx,ts,tsx}"
+      run: bunx biome check --write {staged_files}
+      stage_fixed: true
+    test:
+      run: bun run test:cov
+    commit-lint:
+      run: bunx commitlint --from=HEAD~1
+commit-msg:
+  commands:
+    commit-lint:
+      run: bunx commitlint --edit

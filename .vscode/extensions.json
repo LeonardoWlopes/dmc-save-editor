@@ -1,0 +1,23 @@
+{
+	"recommendations": [
+		"formulahendry.auto-rename-tag",
+		"streetsidesoftware.code-spell-checker-portuguese-brazilian",
+		"streetsidesoftware.code-spell-checker",
+		"naumovs.color-highlight",
+		"mikestead.dotenv",
+		"editorconfig.editorconfig",
+		"usernamehw.errorlens",
+		"lokalise.i18n-ally",
+		"wix.vscode-import-cost",
+		"ritwickdey.liveserver",
+		"davidanson.vscode-markdownlint",
+		"simonsiefke.svg-preview",
+		"gruntfuggly.todo-tree",
+		"redhat.vscode-yaml",
+		"formulahendry.auto-close-tag",
+		"github.vscode-github-actions",
+		"cipchk.cssrem",
+		"bradlc.vscode-tailwindcss",
+		"vitest.explorer"
+	]
+}

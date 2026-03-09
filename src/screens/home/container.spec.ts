@@ -1,43 +1,42 @@
-import type { UseQueryResult } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { makeOrganizationSut } from '~/__tests__/factories/organization';
-import type { IOrganization } from '~/interfaces/organization';
-import { useGetOrganization } from '~/services/organization';
+import { act, renderHook } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 import { useHomeContainer } from './container';
 
-vi.mock('~/services/organization', () => ({
-	useGetOrganization: vi.fn(),
-}));
-
 describe('useHomeContainer', () => {
-	it('should return organization data and loading state', () => {
-		const mockOrganization = makeOrganizationSut();
-
-		const mockUseGetOrganization = vi.mocked(useGetOrganization);
-
-		mockUseGetOrganization.mockReturnValue({
-			data: mockOrganization,
-			isLoading: false,
-		} as UseQueryResult<IOrganization>);
-
+	it('should initialize with no file loaded and not dragging', () => {
 		const { result } = renderHook(() => useHomeContainer());
 
-		expect(result.current.organization).toEqual(mockOrganization);
-		expect(result.current.isLoadingOrganization).toBe(false);
+		expect(result.current.loadedFile).toBeNull();
+		expect(result.current.isDragging).toBe(false);
 	});
 
-	it('should return loading state as true when isLoading is true', () => {
-		const mockUseGetOrganization = vi.mocked(useGetOrganization);
-
-		mockUseGetOrganization.mockReturnValue({
-			data: undefined,
-			isLoading: true,
-		} as UseQueryResult<IOrganization>);
-
+	it('should accept a valid .sav file', () => {
 		const { result } = renderHook(() => useHomeContainer());
 
-		expect(result.current.organization).toBeUndefined();
-		expect(result.current.isLoadingOrganization).toBe(true);
+		const file = new File([''], 'dmc1.sav', {
+			type: 'application/octet-stream',
+		});
+
+		act(() => {
+			result.current.handleInputChange({
+				target: { files: [file] },
+			} as unknown as React.ChangeEvent<HTMLInputElement>);
+		});
+
+		expect(result.current.loadedFile).toEqual(file);
+	});
+
+	it('should not accept a file without .sav extension', () => {
+		const { result } = renderHook(() => useHomeContainer());
+
+		const file = new File([''], 'save.txt', { type: 'text/plain' });
+
+		act(() => {
+			result.current.handleInputChange({
+				target: { files: [file] },
+			} as unknown as React.ChangeEvent<HTMLInputElement>);
+		});
+
+		expect(result.current.loadedFile).toBeNull();
 	});
 });

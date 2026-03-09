@@ -1,17 +1,37 @@
 {
-	"errors": {
-		"environment_variables": "Erros encontrados nas variáveis de ambiente"
-	},
 	"home": {
-		"no_organization": "Nenhuma organização encontrada",
-		"organization": {
-			"blog": "Blog",
-			"location": "Localização",
-			"members": "Membros",
-			"not_informed": "Não informada",
-			"repositories": "Repositórios",
-			"view_on_github": "Ver no GitHub"
+		"dropzone": {
+			"browse_button": "Selecionar arquivo",
+			"dragging_title": "Solte o arquivo aqui",
+			"hint": ".sav",
+			"idle_title": "Arraste seu arquivo de save",
+			"label": "Importar arquivo de save",
+			"loaded_title": "Arquivo Carregado",
+			"open_editor": "Abrir Editor",
+			"subtitle": "ou clique para procurar"
 		},
-		"title": "BuildBox Vite Template"
+		"errors": {
+			"invalid_file": "Arquivo inválido. Selecione um arquivo .sav"
+		},
+		"games": {
+			"dmc1": "DMC 1",
+			"dmc2_soon": "DMC 2 — em breve",
+			"dmc3_soon": "DMC 3 — em breve"
+		},
+		"hero": {
+			"description": "Edite seus saves da Devil May Cry HD Collection.\nModifique missões, dificuldade, orbs e mais.",
+			"tag": "HD Collection",
+			"title": "DMC Editor de Saves"
+		}
+	},
+	"layout": {
+		"footer": {
+			"disclaimer": "Projeto pessoal · Não afiliado à Capcom"
+		},
+		"header": {
+			"github_label": "Ver no GitHub",
+			"subtitle": "Devil May Cry HD Collection",
+			"title": "Editor de Saves"
+		}
 	}
 }

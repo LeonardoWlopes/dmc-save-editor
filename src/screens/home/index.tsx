@@ -1,100 +1,168 @@
+import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
-import background from '~/assets/images/background.webp';
-import logo from '~/assets/images/logo.png';
-import { Loading } from '~/components/loading';
+import { Badge } from '~/components/ui/badge';
+import { Button } from '~/components/ui/button';
+import { cn } from '~/lib/utils';
+import { formatBytes } from '~/utils/data';
 import { useHomeContainer } from './container';
 
 export default function HomeScreen() {
+	const {
+		isDragging,
+		loadedFile,
+		inputRef,
+		handleDropFile,
+		handleDragOver,
+		handleDragLeave,
+		handleInputChange,
+		handleDropFileZoneKeyDown,
+	} = useHomeContainer();
+
 	const { t } = useTranslation('home');
 
-	const { organization, isLoadingOrganization } = useHomeContainer();
+	const inputId = useId();
 
 	return (
-		<main
-			className="flex h-screen w-screen items-center justify-center bg-cover bg-center bg-no-repeat"
-			style={{
-				backgroundImage: `url(${background})`,
-			}}
-		>
-			<div className="flex flex-col items-center">
-				<img
-					style={{
-						animationDuration: '3s',
-					}}
-					className="mb-4 w-40 animate-bounce"
-					src={logo}
-					alt="logo"
+		<main className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-12">
+			{/* Hero */}
+			<div className="text-center flex flex-col items-center gap-4">
+				<div className="flex items-center gap-3 mb-1">
+					<div className="h-px w-12 bg-dmc-crimson/40" />
+					<span className="text-xs font-mono tracking-[0.4em] uppercase text-dmc-gold opacity-70">
+						{t('hero.tag')}
+					</span>
+					<div className="h-px w-12 bg-dmc-crimson/40" />
+				</div>
+
+				<h2 className="font-display text-5xl md:text-6xl font-black tracking-[0.12em] uppercase text-foreground leading-none">
+					DMC <span className="text-primary dmc-text-glow">Save</span>
+					<br />
+					Editor
+				</h2>
+
+				<div className="dmc-divider w-64 mt-1" />
+
+				<p className="text-muted-foreground text-sm max-w-sm text-center leading-relaxed mt-1 whitespace-pre-line">
+					{t('hero.description')}
+				</p>
+			</div>
+
+			{/* Drop zone */}
+			<label
+				htmlFor={inputId}
+				aria-label={t('dropzone.label')}
+				className={cn(
+					'relative w-full max-w-lg aspect-video',
+					'border border-border rounded-sm',
+					'flex flex-col items-center justify-center gap-5',
+					'cursor-pointer select-none transition-all duration-300',
+					isDragging ? 'dmc-glow-active border-primary' : 'dmc-glow',
+					loadedFile && 'border-dmc-gold',
+				)}
+				onDrop={handleDropFile}
+				onDragOver={handleDragOver}
+				onDragLeave={handleDragLeave}
+				onKeyDown={handleDropFileZoneKeyDown}
+			>
+				{/* Corner decorations */}
+				<span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary" />
+				<span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary" />
+				<span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary" />
+				<span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary" />
+
+				<input
+					id={inputId}
+					ref={inputRef}
+					type="file"
+					accept=".sav"
+					className="hidden"
+					onChange={handleInputChange}
 				/>
 
-				<h1 className="mb-8 text-center text-5xl font-bold text-white drop-shadow-lg">
-					{t('title')}
-				</h1>
+				{loadedFile ? (
+					<>
+						<div className="text-4xl">⚔️</div>
 
-				{isLoadingOrganization ? (
-					<Loading />
-				) : organization ? (
-					<div className="rounded-lg bg-white/90 p-6 shadow-lg backdrop-blur-sm">
-						<div className="flex items-center gap-4">
-							<img
-								src={organization.avatar_url}
-								alt={organization.name}
-								className="h-16 w-16 rounded-full"
-							/>
+						<div className="text-center">
+							<p className="font-display text-sm font-bold tracking-widest uppercase text-dmc-gold dmc-gold-glow">
+								{t('dropzone.loaded_title')}
+							</p>
 
-							<div>
-								<h2 className="text-2xl font-bold text-gray-800">
-									{organization.name}
-								</h2>
+							<p className="text-foreground text-sm mt-1 font-mono">
+								{loadedFile.name}
+							</p>
 
-								<p className="text-gray-600">{organization.description}</p>
-							</div>
+							<p className="text-muted-foreground text-xs mt-0.5">
+								{formatBytes(loadedFile.size)}
+							</p>
 						</div>
 
-						<div className="mt-4 grid grid-cols-2 gap-4 text-sm text-gray-600">
-							<div>
-								<span className="font-semibold">
-									{t('organization.location')}:
-								</span>{' '}
-								{organization.location || t('organization.not_informed')}
-							</div>
-
-							<div>
-								<span className="font-semibold">
-									{t('organization.repositories')}:
-								</span>{' '}
-								{organization.public_repos}
-							</div>
-
-							<div>
-								<span className="font-semibold">{t('organization.blog')}:</span>{' '}
-								<a
-									href={organization.blog}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-blue-600 hover:underline"
-								>
-									{organization.blog}
-								</a>
-							</div>
-
-							<div>
-								<span className="font-semibold">
-									{t('organization.members')}:
-								</span>{' '}
-								<a
-									href={organization.html_url}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-blue-600 hover:underline"
-								>
-									{t('organization.view_on_github')}
-								</a>
-							</div>
-						</div>
-					</div>
+						{/* stopPropagation evita que o label abra o file dialog ao clicar */}
+						<Button
+							size="sm"
+							className="font-display tracking-widest uppercase text-xs"
+							onClick={(e) => e.stopPropagation()}
+						>
+							{t('dropzone.open_editor')}
+						</Button>
+					</>
 				) : (
-					<div className="text-white">{t('no_organization')}</div>
+					<>
+						<div
+							className={cn(
+								'text-5xl transition-transform duration-300',
+								isDragging && 'scale-110',
+							)}
+						>
+							🗡️
+						</div>
+
+						<div className="text-center">
+							<p className="font-display text-sm font-semibold tracking-[0.15em] uppercase text-foreground">
+								{isDragging
+									? t('dropzone.dragging_title')
+									: t('dropzone.idle_title')}
+							</p>
+
+							<p className="text-muted-foreground text-xs mt-1">
+								{t('dropzone.subtitle')}
+							</p>
+						</div>
+
+						{/* span estilizado — o label pai cuida do clique nativamente */}
+						<span className="inline-flex items-center justify-center font-display tracking-widest uppercase text-xs border border-primary/40 text-primary hover:bg-primary/10 transition-colors rounded-sm px-3 py-1.5">
+							{t('dropzone.browse_button')}
+						</span>
+
+						<p className="text-muted-foreground/50 text-xs font-mono absolute bottom-4">
+							{t('dropzone.hint')}
+						</p>
+					</>
 				)}
+			</label>
+
+			{/* Game support badges */}
+			<div className="flex items-center gap-3">
+				<Badge
+					variant="outline"
+					className="border-primary/60 text-primary font-display tracking-wider uppercase text-[10px] py-1 px-3"
+				>
+					{t('games.dmc1')}
+				</Badge>
+
+				<Badge
+					variant="outline"
+					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
+				>
+					{t('games.dmc2_soon')}
+				</Badge>
+
+				<Badge
+					variant="outline"
+					className="border-muted-foreground/20 text-muted-foreground/40 font-display tracking-wider uppercase text-[10px] py-1 px-3"
+				>
+					{t('games.dmc3_soon')}
+				</Badge>
 			</div>
 		</main>
 	);

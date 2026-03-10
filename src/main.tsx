@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Toaster } from '~/components/ui/sonner';
@@ -9,7 +10,7 @@ createRoot(document.getElementById('root') as HTMLElement).render(
 	<StrictMode>
 		<AppContextProvider>
 			<Router />
-
+			<Analytics />
 			<Toaster theme="dark" position="bottom-right" richColors />
 		</AppContextProvider>
 	</StrictMode>,

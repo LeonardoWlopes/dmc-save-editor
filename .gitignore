@@ -31,3 +31,5 @@ coverage
 !/cypress/videos/.gitkeep
 /allure-report
 /allure-results
+*.sav
+temp

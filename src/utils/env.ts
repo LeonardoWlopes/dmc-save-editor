@@ -4,12 +4,12 @@ import { z } from 'zod';
 import { t } from '~/i18n/config';
 
 const envSchema = z.object({
-	API_BASE_URL: z.string().url(),
+	GITHUB_REPO_URL: z.string().url(),
 	DEV: z.boolean().default(false),
 });
 
 const _env = envSchema.safeParse({
-	API_BASE_URL: import.meta.env.VITE_PUBLIC_API_BASE_URL,
+	GITHUB_REPO_URL: import.meta.env.VITE_GITHUB_REPO_URL,
 	DEV: import.meta.env.DEV,
 });
 

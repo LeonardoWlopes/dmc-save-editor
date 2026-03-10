@@ -28,3 +28,25 @@ export function formatMilliseconds(milliseconds: number): string {
 
 	return '0ms';
 }
+
+export function formatPlaytime(frames: number): string {
+	const totalSeconds = Math.floor(frames / 60);
+	const hours = Math.floor(totalSeconds / 3600);
+	const minutes = Math.floor((totalSeconds % 3600) / 60);
+	const seconds = totalSeconds % 60;
+
+	const pad = (n: number) => n.toString().padStart(2, '0');
+	return `${hours}h ${pad(minutes)}m ${pad(seconds)}s`;
+}
+
+export function downloadBuffer(buffer: ArrayBuffer, filename: string): void {
+	const blob = new Blob([buffer], { type: 'application/octet-stream' });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = filename;
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+	URL.revokeObjectURL(url);
+}

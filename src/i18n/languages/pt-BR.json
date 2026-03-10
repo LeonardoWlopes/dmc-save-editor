@@ -1,17 +1,76 @@
 {
-	"errors": {
-		"environment_variables": "Erros encontrados nas variáveis de ambiente"
+	"dmc1_difficulty_field": {
+		"1": "Normal",
+		"3": "Hard",
+		"5": "Dante Must Die",
+		"7": "Heaven or Hell",
+		"9": "Hell and Hell",
+		"label": "Dificuldade"
+	},
+	"dmc1_screen": {
+		"badge": "DMC 1",
+		"download_button": "Baixar Save",
+		"empty_slot_message": "Slot vazio — selecione um slot com dados",
+		"fields": {
+			"blue_orbs": "Blue Orbs",
+			"completions": "Completações",
+			"current_mission": "Missão Atual",
+			"devil_trigger": "Devil Trigger",
+			"playtime": "Tempo de Jogo",
+			"red_orbs": "Red Orbs",
+			"total_saves": "Total de Saves",
+			"vitality": "Vitalidade",
+			"yellow_orbs": "Yellow Orbs"
+		},
+		"sections": {
+			"character": "Personagem",
+			"orbs": "Orbs",
+			"progress": "Progresso"
+		},
+		"title": "Devil May Cry"
+	},
+	"dmc1_slot_selector": {
+		"empty": "Vazio",
+		"mission_short": "M{{mission}}",
+		"slot_label": "Slot"
 	},
 	"home": {
-		"no_organization": "Nenhuma organização encontrada",
-		"organization": {
-			"blog": "Blog",
-			"location": "Localização",
-			"members": "Membros",
-			"not_informed": "Não informada",
-			"repositories": "Repositórios",
-			"view_on_github": "Ver no GitHub"
+		"dropzone": {
+			"browse_button": "Selecionar arquivo",
+			"dragging_title": "Solte o arquivo aqui",
+			"hint": ".sav",
+			"idle_title": "Arraste seu arquivo de save",
+			"label": "Importar arquivo de save",
+			"loaded_title": "Arquivo Carregado",
+			"open_editor": "Abrir Editor",
+			"subtitle": "ou clique para procurar"
 		},
-		"title": "BuildBox Vite Template"
+		"errors": {
+			"invalid_file": "Arquivo inválido. Selecione um arquivo .sav",
+			"unknown_game": "Save não reconhecido. Certifique-se de que é um arquivo da DMC HD Collection (Steam)."
+		},
+		"games": {
+			"dmc1": "Devil May Cry",
+			"dmc1_badge": "DMC 1",
+			"dmc2": "Devil May Cry 2",
+			"dmc2_badge": "DMC 2 — em breve",
+			"dmc3": "Devil May Cry 3",
+			"dmc3_badge": "DMC 3 — em breve"
+		},
+		"hero": {
+			"description": "Edite seus saves da Devil May Cry HD Collection.\nModifique missões, dificuldade, orbs e mais.",
+			"tag": "HD Collection",
+			"title": "DMC Editor de Saves"
+		}
+	},
+	"layout": {
+		"footer": {
+			"disclaimer": "Projeto pessoal · Não afiliado à Capcom"
+		},
+		"header": {
+			"github_label": "Ver no GitHub",
+			"subtitle": "Devil May Cry HD Collection",
+			"title": "Editor de Saves"
+		}
 	}
 }

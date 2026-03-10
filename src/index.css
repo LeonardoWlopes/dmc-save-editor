@@ -1,5 +1,171 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-@theme {
-	--font-sans: Poppins, system-ui, sans-serif;
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────
+   DMC Save Editor — Color Identity
+   Inspired by Devil May Cry HD Collection
+   Primary: Crimson Red  #C41E3A
+   Accent:  Antique Gold #C9A84C
+   Base:    Near Black   #080808
+───────────────────────────────────────── */
+
+:root {
+	/* DMC brand tokens */
+	--dmc-crimson: #c41e3a;
+	--dmc-crimson-deep: #8b0000;
+	--dmc-gold: #c9a84c;
+	--dmc-gold-bright: #e8c96a;
+	--dmc-silver: #a09a94;
+
+	/* shadcn semantic tokens — DMC Dark Theme (always dark) */
+	--background: #080808;
+	--foreground: #e2ddd8;
+	--card: #0f0f0f;
+	--card-foreground: #e2ddd8;
+	--popover: #0f0f0f;
+	--popover-foreground: #e2ddd8;
+	--primary: #c41e3a;
+	--primary-foreground: #f5f0eb;
+	--secondary: #1a1a1a;
+	--secondary-foreground: #e2ddd8;
+	--muted: #151515;
+	--muted-foreground: #6b6560;
+	--accent: #c9a84c;
+	--accent-foreground: #080808;
+	--destructive: #8b0000;
+	--destructive-foreground: #f5f0eb;
+	--border: rgba(196, 30, 58, 0.18);
+	--input: rgba(196, 30, 58, 0.12);
+	--ring: #c41e3a;
+	--radius: 0.25rem;
+}
+
+@theme inline {
+	/* Fonts */
+	--font-sans: "Poppins", system-ui, sans-serif;
+	--font-display: "Cinzel", Georgia, serif;
+	--font-mono: "Courier New", monospace;
+
+	/* Color mappings */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+
+	/* DMC brand colors as Tailwind utilities */
+	--color-dmc-crimson: var(--dmc-crimson);
+	--color-dmc-crimson-deep: var(--dmc-crimson-deep);
+	--color-dmc-gold: var(--dmc-gold);
+	--color-dmc-gold-bright: var(--dmc-gold-bright);
+	--color-dmc-silver: var(--dmc-silver);
+
+	/* Radius scale */
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 2);
+	--radius-2xl: calc(var(--radius) * 4);
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+
+	html {
+		@apply font-sans;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		background-image: radial-gradient(
+			ellipse 80% 50% at 50% -5%,
+			rgba(139, 0, 0, 0.15) 0%,
+			transparent 70%
+		);
+		background-attachment: fixed;
+	}
+
+	/* Scrollbar — DMC style */
+	::-webkit-scrollbar {
+		width: 4px;
+	}
+	::-webkit-scrollbar-track {
+		background: var(--background);
+	}
+	::-webkit-scrollbar-thumb {
+		background: var(--dmc-crimson-deep);
+		border-radius: 2px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: var(--dmc-crimson);
+	}
+}
+
+/* ─────────────────────────────────────────
+   DMC Utility Classes
+───────────────────────────────────────── */
+@layer utilities {
+	.font-display {
+		font-family: var(--font-display);
+	}
+
+	.dmc-glow {
+		box-shadow:
+			0 0 15px rgba(196, 30, 58, 0.35),
+			0 0 50px rgba(196, 30, 58, 0.1),
+			inset 0 0 30px rgba(0, 0, 0, 0.7);
+	}
+
+	.dmc-glow-active {
+		box-shadow:
+			0 0 25px rgba(196, 30, 58, 0.6),
+			0 0 80px rgba(196, 30, 58, 0.2),
+			inset 0 0 30px rgba(0, 0, 0, 0.5);
+	}
+
+	.dmc-text-glow {
+		text-shadow:
+			0 0 20px rgba(196, 30, 58, 0.8),
+			0 0 50px rgba(196, 30, 58, 0.3);
+	}
+
+	.dmc-gold-glow {
+		text-shadow:
+			0 0 15px rgba(201, 168, 76, 0.8),
+			0 0 35px rgba(201, 168, 76, 0.3);
+	}
+
+	.dmc-divider {
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--dmc-crimson-deep) 20%,
+			var(--dmc-crimson) 40%,
+			var(--dmc-gold) 50%,
+			var(--dmc-crimson) 60%,
+			var(--dmc-crimson-deep) 80%,
+			transparent
+		);
+		opacity: 0.7;
+	}
 }

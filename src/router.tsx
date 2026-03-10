@@ -1,39 +1,26 @@
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
-import { useShallow } from 'zustand/shallow';
+import { Layout } from './components/layout';
 import { LoadingScreen } from './screens/loading';
-import { useAuthStore } from './stores/auth';
 
 const HomeScreen = lazy(() => import('./screens/home'));
+const Dmc1Screen = lazy(() => import('./screens/dmc1'));
+
+const router = createBrowserRouter([
+	{
+		element: <Layout />,
+		children: [
+			{ path: '/', element: <HomeScreen /> },
+			{ path: '/dmc1', element: <Dmc1Screen /> },
+			{ path: '*', element: <Navigate to="/" /> },
+		],
+	},
+]);
 
 export function Router() {
-	const isLoggedIn = useAuthStore(useShallow((state) => !!state.accessToken));
-
-	const authRoutes = createBrowserRouter([
-		{
-			path: '/',
-			element: <HomeScreen />,
-		},
-		{
-			path: '*',
-			element: <Navigate to="/" />,
-		},
-	]);
-
-	const appRoutes = createBrowserRouter([
-		{
-			path: '/',
-			element: <HomeScreen />,
-		},
-		{
-			path: '*',
-			element: <Navigate to="/" />,
-		},
-	]);
-
 	return (
 		<Suspense fallback={<LoadingScreen />}>
-			<RouterProvider router={isLoggedIn ? appRoutes : authRoutes} />
+			<RouterProvider router={router} />
 		</Suspense>
 	);
 }

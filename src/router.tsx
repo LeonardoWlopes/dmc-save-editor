@@ -1,10 +1,7 @@
-import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
 import { Layout } from './components/layout';
-import { LoadingScreen } from './screens/loading';
-
-const HomeScreen = lazy(() => import('./screens/home'));
-const Dmc1Screen = lazy(() => import('./screens/dmc1'));
+import Dmc1Screen from './screens/dmc1';
+import HomeScreen from './screens/home';
 
 const router = createBrowserRouter([
 	{
@@ -18,9 +15,5 @@ const router = createBrowserRouter([
 ]);
 
 export function Router() {
-	return (
-		<Suspense fallback={<LoadingScreen />}>
-			<RouterProvider router={router} />
-		</Suspense>
-	);
+	return <RouterProvider router={router} />;
 }

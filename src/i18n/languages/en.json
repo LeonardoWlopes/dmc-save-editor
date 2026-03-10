@@ -1,0 +1,76 @@
+{
+	"dmc1_difficulty_field": {
+		"1": "Normal",
+		"3": "Hard",
+		"5": "Dante Must Die",
+		"7": "Heaven or Hell",
+		"9": "Hell and Hell",
+		"label": "Difficulty"
+	},
+	"dmc1_screen": {
+		"badge": "DMC 1",
+		"download_button": "Download Save",
+		"empty_slot_message": "Empty slot — select a slot with data",
+		"fields": {
+			"blue_orbs": "Blue Orbs",
+			"completions": "Completions",
+			"current_mission": "Current Mission",
+			"devil_trigger": "Devil Trigger",
+			"playtime": "Playtime",
+			"red_orbs": "Red Orbs",
+			"total_saves": "Total Saves",
+			"vitality": "Vitality",
+			"yellow_orbs": "Yellow Orbs"
+		},
+		"sections": {
+			"character": "Character",
+			"orbs": "Orbs",
+			"progress": "Progress"
+		},
+		"title": "Devil May Cry"
+	},
+	"dmc1_slot_selector": {
+		"empty": "Empty",
+		"mission_short": "M{{mission}}",
+		"slot_label": "Slot"
+	},
+	"home": {
+		"dropzone": {
+			"browse_button": "Browse file",
+			"dragging_title": "Drop your file here",
+			"hint": ".sav",
+			"idle_title": "Drag your save file here",
+			"label": "Import save file",
+			"loaded_title": "File Loaded",
+			"open_editor": "Open Editor",
+			"subtitle": "or click to browse"
+		},
+		"errors": {
+			"invalid_file": "Invalid file. Please select a .sav file.",
+			"unknown_game": "Save not recognized. Make sure it's a file from DMC HD Collection (Steam)."
+		},
+		"games": {
+			"dmc1": "Devil May Cry",
+			"dmc1_badge": "DMC 1",
+			"dmc2": "Devil May Cry 2",
+			"dmc2_badge": "DMC 2 — coming soon",
+			"dmc3": "Devil May Cry 3",
+			"dmc3_badge": "DMC 3 — coming soon"
+		},
+		"hero": {
+			"description": "Edit your Devil May Cry HD Collection saves.\nModify missions, difficulty, orbs, and more.",
+			"tag": "HD Collection",
+			"title": "DMC Save Editor"
+		}
+	},
+	"layout": {
+		"footer": {
+			"disclaimer": "Personal project · Not affiliated with Capcom"
+		},
+		"header": {
+			"github_label": "View on GitHub",
+			"subtitle": "Devil May Cry HD Collection",
+			"title": "Save Editor"
+		}
+	}
+}

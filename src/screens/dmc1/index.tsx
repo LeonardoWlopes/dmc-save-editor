@@ -42,7 +42,7 @@ export default function Dmc1Screen() {
 
 	useBeforeUnload(isValid);
 
-	if (!isValid) return <Navigate to="/" replace />;
+	if (!isValid) return <Navigate to="/" />;
 
 	return (
 		<main className="flex-1 flex flex-col px-4 py-8 gap-6 max-w-3xl mx-auto w-full">

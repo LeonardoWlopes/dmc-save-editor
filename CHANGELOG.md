@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/LeonardoWlopes/dmc-save-editor/compare/v1.0.0...v1.0.1) (2026-03-10)
+
+
+### Bug Fixes
+
+* update navigation behavior to replace current entry when redirecting on invalid state ([bd66f8b](https://github.com/LeonardoWlopes/dmc-save-editor/commit/bd66f8bfb8dc8d7b946d2b38b54fd3d4bf6fcb25))
+
 # 1.0.0 (2026-03-10)
 
 

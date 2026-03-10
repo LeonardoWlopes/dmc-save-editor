@@ -126,13 +126,15 @@ The difficulty byte does not store a simple index. It uses the formula:
 stored_value = difficulty_index * 2 + 1
 ```
 
-| Difficulty | Index | Stored Value |
-|-----------|-------|--------------|
-| Normal | 0 | 1 |
-| Hard | 1 | 3 |
-| Dante Must Die | 2 | 5 |
-| Heaven or Hell | 3 | 7 |
-| Hell and Hell | 4 | 9 |
+DMC 1 has three difficulties only:
+
+| Difficulty       | Index | Stored Value (common) |
+|------------------|-------|------------------------|
+| Normal           | 0     | 1                      |
+| Hard             | 1     | 3                      |
+| Dante Must Die   | 2     | 5                      |
+
+**Note:** Some saves use an offset of +2, storing 3, 5, 7 for the three difficulties instead of 1, 3, 5. The editor normalizes these on read so Normal displays correctly; on save it writes the display value (1, 3, 5) as-is.
 
 ---
 

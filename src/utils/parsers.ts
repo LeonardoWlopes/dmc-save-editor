@@ -5,6 +5,22 @@ export const DMC1_SLOT_SIZE = 2416;
 export const DMC1_SLOT_COUNT = 10;
 export const DMC1_MAGIC = [0x01, 0x00, 0x00] as const;
 
+const DMC1_DIFFICULTY_DISPLAY_OFFSET = 2;
+const DMC1_MAX_DIFFICULTY = 5;
+
+function difficultyFromFile(raw: number): number {
+	let display: number;
+	if (raw >= 3 && raw <= 11 && raw % 2 === 1) {
+		display = Math.min(
+			raw - DMC1_DIFFICULTY_DISPLAY_OFFSET,
+			DMC1_MAX_DIFFICULTY,
+		);
+	} else {
+		display = raw <= DMC1_MAX_DIFFICULTY ? raw : DMC1_MAX_DIFFICULTY;
+	}
+	return display === 1 || display === 3 || display === 5 ? display : 1;
+}
+
 export function serializeDmc1Slot(
 	buffer: ArrayBuffer,
 	slotIndex: number,
@@ -61,7 +77,7 @@ export function parseDmc1Slots(buffer: ArrayBuffer): IDmc1Slot[] {
 			saveCount: view.getInt16(base + 32, true),
 			timesBeaten: view.getInt16(base + 34, true),
 			currentMission: view.getUint8(base + 36),
-			difficulty: view.getUint8(base + 38),
+			difficulty: difficultyFromFile(view.getUint8(base + 38)),
 			playtime: view.getInt32(base + 44, true),
 			yellowOrbs: view.getInt16(base + 1568, true),
 			vitality: view.getUint8(base + 1572),
